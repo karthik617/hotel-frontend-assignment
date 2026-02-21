@@ -1,34 +1,6 @@
-/**
- * Hotel Room Reservation System — React Frontend
- * ================================================
- * 
- * Components:
- *   App              — root, holds all state, talks to backend API
- *   ControlPanel     — input + Book / Reset / Random buttons
- *   StatsBar         — live occupancy stats
- *   HotelGrid        — visual grid of all 10 floors
- *   FloorRow         — single floor with room cells
- *   RoomCell         — individual room square with status color
- *   Legend           — color key
- *   BookingResult    — shows last booking result (rooms + travel time)
- * 
- * Color coding:
- *   ⬜ White/light  — available
- *   🟠 Orange       — randomly occupied (existing guest)
- *   🟢 Green        — newly booked (last booking action)
- *   🔴 Red          — previously booked (earlier booking actions)
- */
-
 import { useState, useEffect, useCallback } from "react";
-
-// ─────────────────────────────────────────────────────────────────
-// CONFIG
-// ─────────────────────────────────────────────────────────────────
 const API = "http://localhost:4000/api";
 
-// ─────────────────────────────────────────────────────────────────
-// UTILITY HOOKS
-// ─────────────────────────────────────────────────────────────────
 function useHotel() {
   const [rooms, setRooms] = useState([]);
   const [stats, setStats] = useState({ total: 97, booked: 0, available: 97 });
@@ -106,11 +78,6 @@ function useHotel() {
   return { rooms, stats, lastBooking, loading, error, bookRooms, randomOccupancy, resetAll };
 }
 
-// ─────────────────────────────────────────────────────────────────
-// SUB-COMPONENTS
-// ─────────────────────────────────────────────────────────────────
-
-/** Room color logic */
 function getRoomStyle(room) {
   if (room.newlyBooked) return { bg: "#22c55e", text: "#fff", border: "#16a34a", label: "New" };
   if (room.randomlyOccupied) return { bg: "#f97316", text: "#fff", border: "#ea580c", label: "Occ" };
@@ -550,9 +517,6 @@ function AlgorithmExplainer() {
   );
 }
 
-// ─────────────────────────────────────────────────────────────────
-// MAIN APP
-// ─────────────────────────────────────────────────────────────────
 export default function App() {
   const { rooms, stats, lastBooking, loading, error, bookRooms, randomOccupancy, resetAll } = useHotel();
 

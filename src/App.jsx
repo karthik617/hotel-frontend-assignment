@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
-const API = "http://localhost:4000/api";
+const BASE_URL = import.meta.env.VITE_API_BASE || ""
+const API = `${BASE_URL}/api`;
 
 function useHotel() {
   const [rooms, setRooms] = useState([]);

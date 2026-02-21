@@ -29,7 +29,6 @@ npm run dev        # runs on http://localhost:5173
 | **Color Coding** | 🟢 New booking · 🔴 Previous booking · 🟠 Random occupancy · ⬜ Available |
 | **Stats Bar** | Live count of total/booked/available + occupancy % bar |
 | **Booking Result** | Shows which rooms were booked + travel time + explanation |
-| **Algorithm Explainer** | Collapsible panel explaining the algorithm |
 | **Responsive** | Works on mobile (small room cells) and desktop |
 | **Tooltips** | Hover any room to see room ID, floor, position, status |
 

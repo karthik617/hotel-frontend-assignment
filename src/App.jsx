@@ -462,61 +462,6 @@ function Btn({ label, onClick, disabled, primary, color }) {
   );
 }
 
-function AlgorithmExplainer() {
-  const [open, setOpen] = useState(false);
-  return (
-    <div style={{
-      background: "#fafafa",
-      border: "1px solid #e5e7eb",
-      borderRadius: 12,
-      marginBottom: 16,
-      overflow: "hidden",
-    }}>
-      <button
-        onClick={() => setOpen(o => !o)}
-        style={{
-          width: "100%", textAlign: "left", padding: "12px 16px",
-          background: "none", border: "none", cursor: "pointer",
-          display: "flex", justifyContent: "space-between", alignItems: "center",
-        }}
-      >
-        <span style={{ fontSize: 13, fontWeight: 700, color: "#374151" }}>
-          📐 How the Booking Algorithm Works
-        </span>
-        <span style={{ color: "#9ca3af" }}>{open ? "▲" : "▼"}</span>
-      </button>
-
-      {open && (
-        <div style={{ padding: "0 16px 16px", fontSize: 12, color: "#4b5563", lineHeight: 1.7 }}>
-          <p style={{ margin: "0 0 8px" }}>
-            <strong>Travel time formula:</strong>
-          </p>
-          <ul style={{ margin: "0 0 10px", paddingLeft: 20 }}>
-            <li><strong>Same floor:</strong> |posA − posB| minutes (horizontal)</li>
-            <li><strong>Different floors:</strong> (posA − 1) + |floorA − floorB| × 2 + (posB − 1) minutes
-              <br /><em>(walk to stairs + climb floors + walk from stairs)</em>
-            </li>
-          </ul>
-          <p style={{ margin: "0 0 8px" }}><strong>Selection algorithm (2 steps):</strong></p>
-          <ol style={{ margin: 0, paddingLeft: 20 }}>
-            <li>
-              <strong>Step 1 — Single floor:</strong> For each floor, find the N available rooms
-              with minimum total travel time (sliding-window on sorted rooms). Pick the floor
-              with globally minimum travel time.
-            </li>
-            <li style={{ marginTop: 6 }}>
-              <strong>Step 2 — Cross-floor fallback:</strong> Expand a window of consecutive
-              floors (2, 3, 4…) until enough available rooms exist. Within each window,
-              use the sliding-window on rooms sorted by (floor, position) to find the
-              N-room subset with minimum combined vertical + horizontal travel time.
-            </li>
-          </ol>
-        </div>
-      )}
-    </div>
-  );
-}
-
 export default function App() {
   const { rooms, stats, lastBooking, loading, error, bookRooms, randomOccupancy, resetAll } = useHotel();
 
@@ -567,9 +512,6 @@ export default function App() {
 
         {/* Last booking result */}
         <BookingResult lastBooking={lastBooking} rooms={rooms} />
-
-        {/* Algorithm explainer */}
-        {/* <AlgorithmExplainer /> */}
 
         {/* Legend */}
         <Legend />
